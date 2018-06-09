@@ -8,7 +8,7 @@ __version__ = '0.2.dev1'
 __license__ = 'MIT'
 
 
-class DoesNotWired(Exception):
+class DoesNotWired(AttributeError):
     pass
 
 
@@ -28,10 +28,15 @@ class Autowire(object):
         self.name = name
         self.name_property = name_property
 
+    def __repr__(self):
+        return '<Autowire({})>'.format(', '.join([
+            '{}={}'.format(k, repr(v)) for k, v in self.__dict__.items() if v
+        ]))
+
     def __get__(self, obj, objtype=None):
         if obj is None:
             return self
-        raise DoesNotWired(self.iface)
+        raise DoesNotWired(obj, self)
 
 
 def register_autowire(config, cls, iface=Interface, context=Interface, name='',
