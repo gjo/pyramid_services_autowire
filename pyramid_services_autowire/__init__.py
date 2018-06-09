@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-from zope.interface import Interface
+from zope.interface import Attribute, Interface, implementer
 
 
-__version__ = '0.2.dev0'
+__version__ = '0.2.dev1'
 __license__ = 'MIT'
 
 
@@ -12,6 +12,14 @@ class DoesNotWired(Exception):
     pass
 
 
+class IAutowire(Interface):
+    iface = Attribute('Interface of service')
+    is_contextual = Attribute('use context when service locating')
+    name = Attribute('Name of service')
+    name_property = Attribute('Property name of name of service')
+
+
+@implementer(IAutowire)
 class Autowire(object):
     def __init__(self, iface=None, is_contextual=None, name=None,
                  name_property=None):
@@ -28,7 +36,7 @@ class Autowire(object):
 
 def register_autowire(config, cls, iface=Interface, context=Interface, name='',
                       **kwargs):
-    fields = {k: v for k, v in cls.__dict__.items() if isinstance(v, Autowire)}
+    fields = {k: v for k, v in cls.__dict__.items() if IAutowire.providedBy(v)}
 
     def factory(ctxt, req):
         obj = cls(**kwargs)
