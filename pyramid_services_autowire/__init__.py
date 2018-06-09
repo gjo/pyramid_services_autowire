@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from zope.interface import Interface
 
 
-__version__ = '0.1.dev0'
+__version__ = '0.1'
 __license__ = 'MIT'
 
 
