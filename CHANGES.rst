@@ -1,6 +1,6 @@
 Change History
 ==============
 
-0.1 - Unreleased
+0.1 - 2018-06-09
 ----------------
 - Initial release.
