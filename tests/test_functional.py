@@ -10,6 +10,7 @@ class FunctionalTestCase(unittest.TestCase):
 
     def test_does_not_wired(self):
         from pyramid_services_autowire import Autowire, DoesNotWired
+
         class IDepSvc(Interface):
             pass
 
