@@ -5,6 +5,7 @@ Change History
 ----------------
 - define ``IAutowire``.
 - change ``DoesNotWired`` to subclass of ``AttributeError``
+- add pypy support
 
 0.1.1 - 2018-06-09
 ------------------
