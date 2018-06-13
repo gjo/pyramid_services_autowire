@@ -9,6 +9,9 @@ An autowire utility for `pyramid_services`.
 
 before::
 
+  from zope.interface import Interface
+  from SOMEWHERE import IDependService1, IDependService2, IDependService3
+
   class IService(Interface):
       pass
 
@@ -33,6 +36,8 @@ before::
 after::
 
   from pyramid_services_autowire import Autowire
+  from zope.interface import Interface
+  from SOMEWHERE import IDependService1, IDependService2, IDependService3
 
   class IService(Interface):
       pass
